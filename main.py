@@ -29,11 +29,9 @@ def ForwardEuler(ode, init, n, rightx, show):
         y[i] = y[i - 1] + dx * ode(x[i - 1], y[i - 1])
 
     if(show):
-        # fig, ax = plt.subplots()
         plt.plot(x, y, label='Forward Euler')
         plt.title("Plot of ODE with Initial Condition (%f, %f)" % (init.x, init.y))
         plt.legend()
-        # plt.show()
     return x, y
     
 def RungeKutta4(ode, init, n, rightx, show):
@@ -59,17 +57,15 @@ def RungeKutta4(ode, init, n, rightx, show):
         y[i] = y[i - 1] + (K1 + 2 * K2 + 2 * K3 + K4) / 6
     
     if(show):
-        # fig, ax = plt.subplots()
         plt.plot(x, y, label='Runge-Kutta 4')
         plt.title("Plot of ODE with Initial Condition (%f, %f)" % (init.x, init.y))
         plt.legend()
-        # plt.show()
     return x, y
     
 
 ode = lambda x, y: 2 * x            # ODE
 init = condition(-10, 100)          # Initial Condition
-n = 1000                        # Number of Points for Interpolation
+n = 1000                            # Number of Points for Interpolation
 rightx = 10
 
 if __name__ == '__main__':
