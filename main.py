@@ -103,8 +103,7 @@ def RungeKutta4(ode, order: int, init: np.ndarray, dt: float, rightt: float):
         x[i] = x[i - 1] + (k[0][0] + 2 * k[1][0] + 2 * k[2][0] + k[3][0]) / 6
         if order > 1:
             z[:, i] = z[:, i - 1] + (k[0][1:] + 2 * k[1][1:] + 2 * k[2][1:] + k[3][1:]) / 6
-        
-        t[i] = t[i - 1] + dt
+
     return t, x
 
 # ODE Definition
