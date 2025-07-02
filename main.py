@@ -66,7 +66,7 @@ def RungeKutta4(ode, order: int, init: np.ndarray, dt: float, rightt: float):
     if leftt > rightt:
         raise Exception("rightt is Smaller than leftt. For Runge Kutta 4 Method.")
 
-    # Ensure Number of points is positive
+    # Ensure Time step is positive
     if dt <= 0:
         raise Exception("Time Step must be positive. For Runge Kutta 4 Method")
 
@@ -79,6 +79,7 @@ def RungeKutta4(ode, order: int, init: np.ndarray, dt: float, rightt: float):
     state_mid = np.zeros(order)
     state_final = np.zeros(order)
     x[0] = init[1]                      # Set initial value for x
+
     # Set initial values for higher derivatives
     for j in np.arange(0, order - 1):
         z[j][0] = init[j + 2]
@@ -112,16 +113,13 @@ rightt = 2                          # Right Boundary
 init2 = np.array([0, 1, 0])         # Initial Condition: [x0, y0, y'0]
 ode2 = lambda t, x, x1: -1000 * x   # Define second-order ODE system: y'' = -1000y
 
-ode3 = lambda t, x: t * x
 init3 = np.array([0, 1])
+ode3 = lambda t, x: t * x
 
 if __name__ == '__main__':
-    
-    # t, x = ForwardEuler(ode3, init3, 0.02, rightt, True)
-    
+
     t, x = RungeKutta4(ode2, 2, init2, dt, rightt)
     x_exact = np.cos(np.sqrt(1000) * t)
-    # y_exact = np.exp(np.pow(x, 2) /6 2)
     plt.plot(t, x, label='RK4')
     plt.plot(t, x_exact, label='Exact')
     plt.plot(t, np.abs(x_exact - x), label='Error')
