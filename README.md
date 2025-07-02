@@ -64,8 +64,11 @@ The plot will show:
 ## Project Structure
 
 `main.py`: Contains the core implementation, including the condition class, `ForwardEuler` and `RungeKutta4` functions, and plotting logic.
+
 `README.md`: This file, providing project documentation.
+
 `requirements.txt`: List of dependencies.
+
 `.gitignore`: Excludes virtual environment and temporary files.
 
 ## Contributing
