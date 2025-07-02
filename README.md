@@ -1,14 +1,14 @@
 # Differential Equation Solver
 
 ## Overview
-This repository contains a Python implementation of a Differential Equation Solver, designed to numerically approximate solutions to ordinary differential equations (ODEs) using the Forward Euler and Runge-Kutta 4 (RK4) methods. The project includes visualization of the numerical solutions, exact solutions, and error analysis, developed as part of an academic exercise to enhance computational skills in Applied Mathematics.
+This repository contains a Python implementation of a Differential Equation Solver, designed to numerically approximate solutions to ordinary differential equations (ODEs) using the Forward Euler and Runge-Kutta 4 (RK4) methods. The project includes visualization of numerical solutions, exact solutions, and error analysis, developed as part of an academic exercise to enhance computational skills in Applied Mathematics. The solver now supports a time-step-based approach dt for improved flexibility and accuracy.
 
 ## Features
 - Implementation of the Forward Euler method for ODE solving.
-- Implementation of the Runge-Kutta 4 method for higher accuracy.
+- Implementation of the Runge-Kutta 4 method with symmetrized logic for higher accuracy, supporting higher-order ODEs.
 - Visualization of numerical approximations, exact solutions, and error plots using Matplotlib with a scientific style.
-- Error handling for invalid input parameters.
-- Modular design with reusable functions.
+- Error handling for invalid input parameters (e.g., negative time steps).
+- Modular design with reusable functions, now using a dynamic time step dt instead of a fixed number of points.
 
 ## Installation
 
@@ -43,23 +43,22 @@ The following Python libraries are required:
     ```bash
     python main.py
 
-The script will generate a plot displaying the Forward Euler approximation, Runge-Kutta 4 approximation, exact solution, and error curves for the default ODE ( dy/dx = 2x ) with initial condition ( y(-10) = 100 ) over the interval ([-10, 10]).
+The script will generate a plot displaying the RK4 approximation, exact solution, and error curve for the default ODE (( x'' + 1000x = 0 )) with initial condition ( [0, 1, 0] ) over the interval ([0, 2]) using a time step ( dt = 0.0001 ).
 
 ### Customizing the ODE
 
-- Modify the `ode` lambda function in the script to define a different ODE (e.g., `lambda x, y: x + y`).
-- Adjust the `init` object to set a new initial condition (e.g., `condition(0, 1)`).
-- Change the `n` value to alter the number of interpolation points and `rightx` to extend the interval.
+- Modify the ode lambda function in the script to define a different ODE (e.g., lambda t, x, x1: -100 * x for a second-order ODE).
+- Adjust the init array to set new initial conditions (e.g., [0, 1, 0]).
+- Change the dt value to alter the time step and rightt to extend the interval.
 
 ### Example Output
 
 The plot will show:
 
-- Black solid line: Forward Euler approximation
-- Black solid line: Runge-Kutta 4 approximation
-- Line: Exact solution (( y = x^2 ))
-- Dashed line: Euler error
-- Dotted line: RK4 error
+- Solid line: RK4 approximation
+-Solid line: Exact solution (( x = cos(sqrt{1000} t) ))
+-Solid line: Absolute error between RK4 and exact solution
+-Legend identifying each curve
 
 ## Project Structure
 
