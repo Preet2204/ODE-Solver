@@ -25,8 +25,7 @@ def ForwardEuler(ode, init, dt: float, rightt: float, show: bool):
     if leftt > rightt:
         raise Exception("rightt is Smaller than leftt. For Forward Euler Method.")
 
-    # Ensure Number of points is positive
-    
+    # Ensure Time step is positive
     if dt <= 0:
         raise Exception("Time Step must be positive. For Forward Euler Method")
 
@@ -39,7 +38,7 @@ def ForwardEuler(ode, init, dt: float, rightt: float, show: bool):
 
     if(show):
         ax.plot(t, x, label='Forward Euler')
-    
+
     return t, x
 
 def RungeKutta4(ode, order: int, init: np.ndarray, dt: float, rightt: float):
@@ -55,7 +54,7 @@ def RungeKutta4(ode, order: int, init: np.ndarray, dt: float, rightt: float):
     # Validate initial condition length
     if len(init) != order + 1:
         raise Exception("Initial condition must have order + 1 elements.")
-    
+
     # Validate ODE argument count
     if order + 1 != ode.__code__.co_argcount:
         raise Exception("The ODE Function should have %d No. of Arguments in order (t, x, x', x'', ...)" % (order + 1))
