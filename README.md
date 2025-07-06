@@ -1,16 +1,14 @@
 # Differential Equation Solver
 
 ## Overview
-This repository contains a Python implementation of a Differential Equation Solver, designed to numerically approximate solutions to ordinary differential equations (ODEs) using the Forward Euler and Runge-Kutta 4 (RK4) methods. The project includes visualization of numerical solutions, exact solutions, and error analysis, developed as part of an academic exercise to enhance computational skills in Applied Mathematics. The solver now supports a dynamic time-step approach (`dt`) for improved flexibility and accuracy, featuring an adaptive step size control to optimize performance for higher-order and stiff ODEs.
+This repository contains a Python implementation of a Differential Equation Solver, designed to numerically approximate solutions to ordinary differential equations (ODEs) using the Forward Euler, and Runge-Kutta-Fehlberg 45 (RKF45) methods. The project includes visualization of numerical solutions, exact solutions, and error analysis, developed as part of an academic exercise to enhance computational skills in Applied Mathematics. The solver supports a dynamic time-step approach `dt` for improved flexibility and accuracy, with adaptive step size control implemented in the RKF45 method to optimize performance for higher-order and stiff ODEs.
 
 ## Features
 - Implementation of the Forward Euler method for solving first-order ODEs.
-- Implementation of the Runge-Kutta-Fehlberg 45 (RKF45) method for enhanced accuracy with adaptive step size control.
-- Adaptive step size control within the RK4 method, adjusting `dt` dynamically based on a user-defined error tolerance to balance accuracy and efficiency.
+- Implementation of the Runge-Kutta-Fehlberg 45 (RKF45) method for enhanced accuracy with adaptive step size control, adjusting `dt` dynamically based on a user-defined error tolerance.
 - Visualization of numerical approximations, exact solutions, and error plots using Matplotlib with a scientific style via the `scienceplots` package.
 - Error handling for invalid input parameters (e.g., negative time steps or mismatched initial conditions).
 - Modular design with reusable functions, utilizing a dynamic `dt` instead of a fixed number of points.
-
 ## Installation
 
 ### Prerequisites
@@ -44,21 +42,21 @@ The following Python libraries are required:
     ```bash
     python main.py
 
-The script will generate a plot displaying the RK4 approximation, exact solution, and error curve for the default ODE (( x'' + 1000x = 0 )) with initial condition ( [0, 1, 0] ) over the interval ([0, 2]) using an initial time step ( dt = 0.0001 ) and a tolerance of ( 1 \times 10^{-6} )..
+The script will generate a plot displaying the RKF45 approximation, exact solution, and error curve for the default ODE ( dx/dt = t \cdot x ) with initial condition ( [0, 1] ) over the interval ( [0, 2] ) using an initial time step ( dt = 0.0001 ) and a tolerance of ( 1 \times 10^{-10} ).
 
 ### Customizing the ODE
 
-- Modify the ode lambda function in the script to define a different ODE (e.g., `lambda t, x, x1: -100 * x` for a second-order ODE).
-- Adjust the init array to set new initial conditions (e.g., [0, 1, 0]).
-- Change the dt value to alter the time step and right_t to extend the interval.
+- Modify the `ode` lambda function in the script to define a different ODE (e.g., `lambda t, x, x1: -1000 * x` for a second-order ODE or `lambda t, x: t * x` for a first-order ODE).
+- Adjust the init array to set new initial conditions (e.g., ( [0, 1, 0] ) for second-order or ( [0, 1] ) for first-order).
+- Change the `dt` value to alter the time step and `right_t` to extend the interval.
 
 ### Example Output
 
 The plot will show:
 
--Solid line: RK4 approximation
--Solid line: Exact solution (( x = cos(sqrt{1000} t) ))
--Solid line: Absolute error between RK4 and exact solution
+-Solid line: RKF45 approximation
+-Solid line: Exact solution (( x = e^{(t^2) / 2} ))
+-Solid line: Absolute error between RKF45 and exact solution
 -Legend identifying each curve
 
 ## Project Structure
