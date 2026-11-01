@@ -1,10 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib_inline.backend_inline
+# import matplotlib_inline.backend_inline
 import scienceplots
 
 # Set Matplotlib formats and styles for high-quality scientific plots
-matplotlib_inline.backend_inline.set_matplotlib_formats('pdf', 'png')
+# matplotlib_inline.backend_inline.set_matplotlib_formats('pdf', 'png')
 plt.rcParams['figure.dpi']= 150
 plt.rcParams['savefig.dpi'] = 150
 plt.style.use(['science', 'no-latex', 'grid'])
