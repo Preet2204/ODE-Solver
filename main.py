@@ -146,8 +146,8 @@ def RKF45(ode, order: int, init, dt: float, right_t, tol=1e-10):
             if order > 1: z = np.concatenate((z, np.array([rk5z])))
         if error > 0:
             dt *= max(0.5, min(2, 0.9 * ((tol / error) ** (1 / 5))))
-            dt = max(0.000001, min(dt, 0.001))
-        print(t[-1], dt)
+            dt = max(0.000000001, min(dt, 0.1))
+        # print(t[-1], dt)
 
     return t, x
 
